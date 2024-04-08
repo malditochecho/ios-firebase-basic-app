@@ -25,12 +25,11 @@ class SettingsViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func btnSignOut(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            Toast.ok(view: self, title: "Error", message: "\(signOutError)")
+        AuthProvider.logout { (success) in
+            if success {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
-        self.dismiss(animated: true, completion: nil)
     }
 }
 

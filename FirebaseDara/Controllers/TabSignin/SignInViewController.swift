@@ -11,29 +11,38 @@ import Firebase
 class SignInViewController: UIViewController {
 
     // MARK: IBOutlets
-    @IBOutlet var email: UITextField!
-    @IBOutlet var password: UITextField!
+    @IBOutlet var textFieldEmail: UITextField!
+    @IBOutlet var textFieldPassword: UITextField!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        email.delegate = self // hide keyboard
-        password.delegate = self // hide keyboard
+        textFieldEmail.delegate = self // hide keyboard
+        textFieldPassword.delegate = self // hide keyboard
     }
     
     // MARK: IBActions
     @IBAction func btnLogin(_ sender: Any) {
-        if email.text != "" && password.text != "" {
-            Auth.auth().signIn(withEmail: email.text!, password: password.text!) {
-                (authData, error) in
-                if error != nil {
-                    Toast.ok(view: self, title: "Firebase error", message: error?.localizedDescription ?? "Something went wront!")
-                } else {
-                    self.password.text = ""
-                    self.performSegue(withIdentifier: "fromLoginToHome", sender: nil)
+  
+        // validate that the text fields are not empty
+        guard let email = textFieldEmail.text, !email.isEmpty,
+              let password = textFieldPassword.text, !password.isEmpty else {
+            Toast.show(view: self, title: "😬", message: "Fields cannot be empty.", delay: 2)
+            return
+        }
+        
+        // validate that the email and password matches
+        AuthProvider.login(email: email, password: password) { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.textFieldPassword.text = ""
+                    self.performSegue(withIdentifier: Segue.fromLoginToHome, sender: self)
                 }
+            } else {
+                Toast.ok(view: self, title: "🤨", message: "The credentials are not valid.")
             }
+            
         }
     }
     
@@ -48,8 +57,8 @@ class SignInViewController: UIViewController {
 // procotol used to hide the keyboard after pressing return
 extension SignInViewController: UITextFieldDelegate {
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            email.resignFirstResponder()
-            password.resignFirstResponder()
+            textFieldEmail.resignFirstResponder()
+            textFieldPassword.resignFirstResponder()
             return true
         }
 }

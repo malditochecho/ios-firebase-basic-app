@@ -11,6 +11,8 @@
 		490272742BB45D0F00AC027D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490272732BB45D0F00AC027D /* SettingsViewController.swift */; };
 		490272762BB47BE400AC027D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490272752BB47BE400AC027D /* SignUpViewController.swift */; };
 		490272782BB49AB000AC027D /* DocumentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490272772BB49AB000AC027D /* DocumentDetailsViewController.swift */; };
+		490FE7322BC45CC700A68496 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490FE7312BC45CC700A68496 /* AuthProvider.swift */; };
+		490FE7342BC45E4200A68496 /* enumSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490FE7332BC45E4200A68496 /* enumSegue.swift */; };
 		491552192BB77830003E8BDE /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491552182BB77830003E8BDE /* Student.swift */; };
 		4915521B2BB77F1D003E8BDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4915521A2BB77F1D003E8BDE /* GoogleService-Info.plist */; };
 		4915521E2BB7812E003E8BDE /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4915521D2BB7812E003E8BDE /* Toast.swift */; };
@@ -58,6 +60,8 @@
 		490272732BB45D0F00AC027D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		490272752BB47BE400AC027D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		490272772BB49AB000AC027D /* DocumentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailsViewController.swift; sourceTree = "<group>"; };
+		490FE7312BC45CC700A68496 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		490FE7332BC45E4200A68496 /* enumSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enumSegue.swift; sourceTree = "<group>"; };
 		491552182BB77830003E8BDE /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		4915521A2BB77F1D003E8BDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4915521D2BB7812E003E8BDE /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -121,12 +125,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4915521C2BB78127003E8BDE /* Utils */ = {
+		490FE7302BC45CBC00A68496 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				490FE7312BC45CC700A68496 /* AuthProvider.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4915521C2BB78127003E8BDE /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				4915521D2BB7812E003E8BDE /* Toast.swift */,
+				490FE7332BC45E4200A68496 /* enumSegue.swift */,
 			);
-			path = Utils;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		4915E5942BBBE72200975D74 /* Home */ = {
@@ -208,7 +221,8 @@
 		49D239932BB40FAA003B32CF /* FirebaseDara */ = {
 			isa = PBXGroup;
 			children = (
-				4915521C2BB78127003E8BDE /* Utils */,
+				490FE7302BC45CBC00A68496 /* Service */,
+				4915521C2BB78127003E8BDE /* Source */,
 				490272792BB4A1D000AC027D /* Models */,
 				49D239AC2BB40FDF003B32CF /* Views */,
 				49D239AB2BB40FD6003B32CF /* Controllers */,
@@ -350,6 +364,7 @@
 				49D239992BB40FAA003B32CF /* ViewController.swift in Sources */,
 				49D239952BB40FAA003B32CF /* AppDelegate.swift in Sources */,
 				49D239EB2BB418FB003B32CF /* ReadCollectionViewController.swift in Sources */,
+				490FE7322BC45CC700A68496 /* AuthProvider.swift in Sources */,
 				490272722BB45A4400AC027D /* CreateDocumentViewController.swift in Sources */,
 				490272762BB47BE400AC027D /* SignUpViewController.swift in Sources */,
 				490272782BB49AB000AC027D /* DocumentDetailsViewController.swift in Sources */,
@@ -357,6 +372,7 @@
 				491552192BB77830003E8BDE /* Student.swift in Sources */,
 				49D2399F2BB40FAA003B32CF /* FirebaseDara.xcdatamodeld in Sources */,
 				49D239AE2BB41023003B32CF /* SignInViewController.swift in Sources */,
+				490FE7342BC45E4200A68496 /* enumSegue.swift in Sources */,
 				49D239972BB40FAA003B32CF /* SceneDelegate.swift in Sources */,
 				490272742BB45D0F00AC027D /* SettingsViewController.swift in Sources */,
 			);

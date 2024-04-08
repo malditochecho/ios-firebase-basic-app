@@ -11,32 +11,40 @@ import FirebaseAuth
 class SignUpViewController: UIViewController {
     
     // MARK: IBOutlets
-    @IBOutlet var email: UITextField!
-    @IBOutlet var password: UITextField!
+    @IBOutlet var textFieldEmail: UITextField!
+    @IBOutlet var textFieldPassword: UITextField!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        email.delegate = self // hide keyboard
-        password.delegate = self // hide keyboard
+        textFieldEmail.delegate = self // hide keyboard
+        textFieldPassword.delegate = self // hide keyboard
     }
     
     // MARK: IBActions
     @IBAction func btnRegister(_ sender: Any) {
-        if let email = email.text, !email.isEmpty,
-           let password = password.text, !password.isEmpty {
-            Auth.auth().createUser(withEmail: email, password: password) {
-                (authData, error) in
-                if error != nil {
-                    Toast.ok(view: self, title: "Firebase error", message: error?.localizedDescription ?? "Something went wrong!")
-                    self.password.text = ""
-                } else {
-                    self.performSegue(withIdentifier: "fromSignupToHome", sender: nil)
-                    self.email.text = ""
-                    self.password.text = ""
+        
+        // validate that the text fields are not empty
+        guard let email = textFieldEmail.text, !email.isEmpty,
+              let password = textFieldPassword.text, !password.isEmpty else {
+            Toast.show(view: self, title: "😬", message: "Fields cannot be empty.", delay: 2)
+            return
+        }
+        
+        // validate that the email and password matches
+        AuthProvider.signup(email: email, password: password) { (success) in
+            if success {
+                DispatchQueue.main.async {
+                    self.textFieldEmail.text = ""
+                    self.textFieldPassword.text = ""
+                    self.performSegue(withIdentifier: Segue.fromSignupToHome, sender: self)
                 }
+            } else {
+                self.textFieldPassword.text = ""
+                Toast.ok(view: self, title: "🤨", message: "The credentials are not valid.")
             }
+            
         }
     }
     
@@ -51,8 +59,8 @@ class SignUpViewController: UIViewController {
 // procotol used to hide the keyboard after pressing return
 extension SignUpViewController: UITextFieldDelegate {
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            email.resignFirstResponder()
-            password.resignFirstResponder()
+            textFieldEmail.resignFirstResponder()
+            textFieldPassword.resignFirstResponder()
             return true
         }
 }

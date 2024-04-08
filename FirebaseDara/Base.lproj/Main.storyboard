@@ -74,8 +74,8 @@
                         <imageReference key="image" image="person.crop.circle.fill.badge.plus" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="email" destination="dR3-3Y-tri" id="vLp-L3-Qdi"/>
-                        <outlet property="password" destination="qFD-zo-ZaW" id="90v-hC-Twc"/>
+                        <outlet property="textFieldEmail" destination="dR3-3Y-tri" id="ycP-9O-dfE"/>
+                        <outlet property="textFieldPassword" destination="qFD-zo-ZaW" id="Tlu-Bd-YSb"/>
                         <segue destination="Te5-Ve-Nh4" kind="presentation" identifier="fromSignupToHome" modalPresentationStyle="fullScreen" id="Uqg-5y-qD1"/>
                     </connections>
                 </viewController>
@@ -625,8 +625,8 @@
                         <imageReference key="image" image="lock.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="email" destination="UWj-rq-jSg" id="iUw-PF-GWy"/>
-                        <outlet property="password" destination="saN-yE-XiO" id="ahM-Rk-IUw"/>
+                        <outlet property="textFieldEmail" destination="UWj-rq-jSg" id="iUC-vA-Yt5"/>
+                        <outlet property="textFieldPassword" destination="saN-yE-XiO" id="6hv-gL-VpQ"/>
                         <segue destination="Te5-Ve-Nh4" kind="presentation" identifier="fromLoginToHome" modalPresentationStyle="fullScreen" id="iSV-3J-hIc"/>
                     </connections>
                 </viewController>
@@ -654,7 +654,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iSV-3J-hIc"/>
+        <segue reference="Uqg-5y-qD1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="doc.fill.badge.plus" catalog="system" width="120" height="128"/>
