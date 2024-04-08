@@ -133,6 +133,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		490FE7352BC4625100A68496 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				4915E5992BBBE72300975D74 /* TabSignin */,
+				4915E59A2BBBE72300975D74 /* TabSignup */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		4915521C2BB78127003E8BDE /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,9 +250,8 @@
 		49D239AB2BB40FD6003B32CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				490FE7352BC4625100A68496 /* Authentication */,
 				4915E5942BBBE72200975D74 /* Home */,
-				4915E5992BBBE72300975D74 /* TabSignin */,
-				4915E59A2BBBE72300975D74 /* TabSignup */,
 				49D239982BB40FAA003B32CF /* ViewController.swift */,
 			);
 			path = Controllers;
