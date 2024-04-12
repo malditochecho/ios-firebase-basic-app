@@ -71,14 +71,13 @@ class DocumentDetailsViewController: UIViewController {
     }
 
     @IBAction func btnDelete(_ sender: Any) {
-        let db = Firestore.firestore()
-        let docRef = db.collection("students").document(student.docId!)
-        
-        docRef.delete() { (error) in
-            if error != nil {
-                Toast.ok(view: self, title: "Firebase Error", message: error!.localizedDescription)
+        StudentProvider.deleteDocument(studentId: student.docId!) { success in
+            if success {
+                // clear the inputs
+                self.clearTextFields()
+                Toast.show(view: self, title: "👍", message: "Student deleted successfully!", delay: 2)
             } else {
-                Toast.show(view: self, title: "Deleted", message: "Document deleted successfully.", delay: 1)
+                Toast.show(view: self, title: "😩", message: "There was an error deleting the student.", delay: 2)
             }
             self.delegate?.refreshTable()
             self.presentingViewController?.dismiss(animated: true, completion: nil)

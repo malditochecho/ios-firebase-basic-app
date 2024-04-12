@@ -27,6 +27,13 @@ class StudentProvider {
         }
     }
     
+    static func deleteDocument(studentId: String, completion: @escaping (Bool) -> Void) -> Void {
+        let docRef = colRef.document(studentId)
+        docRef.delete() { (error) in
+            error != nil ? completion(false) : completion(true)
+        }
+    }
+    
     static func getDocuments(completion: @escaping (Error?) -> Void) {
         colRef.getDocuments { (querySnapshot, error) in
             if let error = error {
