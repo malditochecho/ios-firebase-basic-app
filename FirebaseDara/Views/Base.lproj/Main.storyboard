@@ -217,7 +217,7 @@
                                     <constraint firstAttribute="height" constant="45" id="RPp-Cx-7Qb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cto-BK-Kjv">
                                 <rect key="frame" x="20" y="738" width="353" height="45"/>
@@ -260,10 +260,10 @@
                         <imageReference key="image" image="doc.fill.badge.plus" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="absences" destination="ui0-u2-XRL" id="gqc-H0-KxA"/>
-                        <outlet property="country" destination="dRf-By-8WX" id="V4F-Ib-0Pf"/>
-                        <outlet property="expertise" destination="a9t-CS-aEg" id="tPK-xE-gtG"/>
-                        <outlet property="name" destination="RsF-DS-bJv" id="8lQ-lr-gWU"/>
+                        <outlet property="textFieldAbsences" destination="ui0-u2-XRL" id="9av-rQ-8sp"/>
+                        <outlet property="textFieldCountry" destination="dRf-By-8WX" id="1QT-LN-iYV"/>
+                        <outlet property="textFieldExpertise" destination="a9t-CS-aEg" id="y4B-xq-78c"/>
+                        <outlet property="textFieldName" destination="RsF-DS-bJv" id="87o-A5-eRF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Pb-7N-8Ow" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

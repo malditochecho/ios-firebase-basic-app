@@ -11,52 +11,53 @@ import Firebase
 class CreateDocumentViewController: UIViewController {
     
     // MARK: Variables
-    @IBOutlet var name: UITextField!
-    @IBOutlet var country: UITextField!
-    @IBOutlet var expertise: UITextField!
-    @IBOutlet var absences: UITextField!
+    @IBOutlet var textFieldName: UITextField!
+    @IBOutlet var textFieldCountry: UITextField!
+    @IBOutlet var textFieldExpertise: UITextField!
+    @IBOutlet var textFieldAbsences: UITextField!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.delegate = self // hide keyboard
-        country.delegate = self // hide keyboard
-        expertise.delegate = self // hide keyboard
-        absences.delegate = self // hide keyboard
+        textFieldName.delegate = self // hide keyboard
+        textFieldCountry.delegate = self // hide keyboard
+        textFieldExpertise.delegate = self // hide keyboard
+        textFieldAbsences.delegate = self // hide keyboard
     }
     
     // MARK: IBActions
     @IBAction func btnCreateStudent(_ sender: Any) {
-        if let name = name.text, !name.isEmpty,
-           let country = country.text, !country.isEmpty,
-           let expertise = expertise.text, !expertise.isEmpty,
-           let absences = absences.text, !absences.isEmpty {
-            Task {
-                do {
-                    let db = Firestore.firestore()
-                    try await db.collection("students").addDocument(data:[
-                        "name": name,
-                        "country": country,
-                        "expertise": expertise,
-                        "absences": absences
-                    ])
-                    clearTextFields()
-                    Toast.show(view: self, title: "Success", message: "Document created successfully.", delay: 2)
-                } catch {
-                    Toast.ok(view: self, title: "Firebase Error", message: error.localizedDescription)
-                }
+        // validate that the text fields are not empty
+        guard let name = textFieldName.text, !name.isEmpty,
+              let country = textFieldCountry.text, !country.isEmpty,
+              let expertise = textFieldExpertise.text, !expertise.isEmpty,
+              let absencesText = textFieldAbsences.text,
+              let absences = Int(absencesText) else {
+            Toast.show(view: self, title: "😬", message: "Fields cannot be empty.", delay: 2)
+            return
+        }
+        
+        // create a new student
+        let newStudent = StudentModel(name: name, country: country, expertise: expertise, absences: absences)
+        
+        // add the todo
+        StudentProvider.addDocument(student: newStudent) { success in
+            if success {
+                // clear the inputs
+                self.clearTextFields()
+                Toast.show(view: self, title: "👍", message: "Student created successfully!", delay: 2)
+            } else {
+                Toast.show(view: self, title: "😩", message: "There was an error creating the student.", delay: 2)
             }
-        } else {
-            Toast.ok(view: self, title: "Warning", message: "Please fill in all fields.")
         }
     }
     
     // MARK: Functions
     func clearTextFields() {
-        name.text = ""
-        country.text = ""
-        expertise.text = ""
-        absences.text = ""
+        textFieldName.text = ""
+        textFieldCountry.text = ""
+        textFieldExpertise.text = ""
+        textFieldAbsences.text = ""
     }
     
     // hide the keyboard when the user touches outside the keyboard
@@ -68,10 +69,10 @@ class CreateDocumentViewController: UIViewController {
 // procotol used to hide the keyboard after pressing return
 extension CreateDocumentViewController: UITextFieldDelegate {
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            name.resignFirstResponder()
-            country.resignFirstResponder()
-            expertise.resignFirstResponder()
-            absences.resignFirstResponder()
+            textFieldName.resignFirstResponder()
+            textFieldCountry.resignFirstResponder()
+            textFieldExpertise.resignFirstResponder()
+            textFieldAbsences.resignFirstResponder()
             return true
         }
 }
